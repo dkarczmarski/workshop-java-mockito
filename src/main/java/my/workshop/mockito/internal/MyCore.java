@@ -21,4 +21,12 @@ public class MyCore {
         return "#" + value + "#";
     }
 
+    public void create1(String value) {
+
+    }
+
+    public boolean verify1(String value) {
+        return value != null && value.length() > 3;
+    }
+
 }

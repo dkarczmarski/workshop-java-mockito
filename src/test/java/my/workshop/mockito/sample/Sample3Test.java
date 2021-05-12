@@ -13,6 +13,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
 public class Sample3Test {
@@ -41,5 +42,30 @@ public class Sample3Test {
 
         // Then
         assertThat(result, is("XXX"));
+    }
+
+    @Test
+    void test3() {
+
+        myService.create1("qqq");
+
+        verify(myCore).verify1("qqq");
+        verify(myCore).create1("qqq");
+
+        Mockito.verify(myCore, Mockito.times(0)).create1("xxx");
+
+    }
+
+    @Test
+    void test4() {
+        // Given
+        given(myCore.verify1("qqq_qqq")).willReturn(true);
+
+        // When
+        myService.create1("qqq_qqq");
+
+        // Then
+        verify(myCore).verify1("qqq_qqq");
+        Mockito.verify(myCore, Mockito.times(0)).create1("qqq_qqq");
     }
 }

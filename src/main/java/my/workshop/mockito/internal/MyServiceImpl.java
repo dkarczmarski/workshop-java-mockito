@@ -15,13 +15,24 @@ public class MyServiceImpl implements MyService {
         return 2 * value;
     }
 
+    @Override
     public String generate1(String value) {
         log.info("generate1() " + value);
         return myCore.generate1(value);
     }
 
+    @Override
     public String generate2(String value) {
         log.info("generate2() " + value);
         return myCore.generate2(value);
     }
+
+    @Override
+    public String create1(String value) {
+        if (!myCore.verify1(value)) {
+            myCore.create1(value);
+        }
+        return value;
+    }
+
 }

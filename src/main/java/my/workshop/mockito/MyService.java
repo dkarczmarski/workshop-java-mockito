@@ -11,4 +11,6 @@ public interface MyService {
 
     String generate2(String value);
 
+    String create1(String value);
+
 }
